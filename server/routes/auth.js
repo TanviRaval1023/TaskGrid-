@@ -151,8 +151,8 @@ router.post("/forgot-password", async (req, res) => {
     await user.save();
 
     // Create password reset link
-    const resetLink =
-      `http://localhost:5173/?resetToken=${resetToken}`;
+   const resetLink =
+  `https://taskgrid-client.onrender.com/?resetToken=${resetToken}`;
 
     // Send reset email
     await sendPasswordResetEmail(
