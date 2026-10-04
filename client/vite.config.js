@@ -35,5 +35,9 @@ export default defineConfig({
         ]
       }
     })
-  ]
+  ],
+
+  preview: {
+    allowedHosts: ["taskgrid-client.onrender.com"]
+  }
 });
