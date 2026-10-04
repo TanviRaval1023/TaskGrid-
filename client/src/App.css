@@ -1,0 +1,1017 @@
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+body {
+  background: #ebded4;
+  color: #02000d;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app {
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(217, 170, 144, 0.20),
+      transparent 35%
+    ),
+    #ebded4;
+}
+
+
+/* =========================================================
+   LOGIN / REGISTER PAGE
+   ========================================================= */
+
+.auth-card {
+  width: calc(100% - 32px);
+  max-width: 450px;
+  padding: 42px 40px 36px;
+  background: #ffffff;
+  border: 1px solid rgba(217, 170, 144, 0.55);
+  border-radius: 18px;
+  box-shadow:
+    0 18px 45px rgba(2, 0, 13, 0.14),
+    0 3px 10px rgba(7, 32, 63, 0.06);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: authAppear 0.45s ease;
+}
+
+@keyframes authAppear {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -47%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+
+/* =========================================================
+   BRAND / TITLE
+   ========================================================= */
+
+.auth-card h1 {
+  margin: 0;
+  text-align: center;
+  font-size: 34px;
+  line-height: 1.2;
+  font-weight: 750;
+  letter-spacing: -0.8px;
+  color: #02000d;
+}
+
+.subtitle {
+  margin: 9px 0 32px;
+  text-align: center;
+  color: #07203f;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.form-group {
+  margin-bottom: 19px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #07203f;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.form-group input {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  border: 1px solid #d9aa90;
+  border-radius: 9px;
+  outline: none;
+  background: #ffffff;
+  color: #02000d;
+  font-size: 14px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.form-group input::placeholder {
+  color: #a65e46;
+  opacity: 0.65;
+}
+
+.form-group input:hover {
+  border-color: #a65e46;
+}
+
+.form-group input:focus {
+  border-color: #07203f;
+  box-shadow:
+    0 0 0 3px rgba(7, 32, 63, 0.10);
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   INPUT ICON WRAPPER
+   ========================================================= */
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+
+/* =========================================================
+   EMAIL ICON
+   ========================================================= */
+
+.input-icon {
+  position: absolute;
+  right: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: #07203f;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.input-wrapper input[type="email"] {
+  padding-right: 46px;
+}
+
+
+/* =========================================================
+   PASSWORD EYE BUTTON
+   ========================================================= */
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #07203f;
+  cursor: pointer;
+  font-size: 17px;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.password-toggle:hover {
+  background: #ebded4;
+  color: #02000d;
+}
+
+.password-toggle:focus-visible {
+  outline: 2px solid #d9aa90;
+  outline-offset: 1px;
+}
+
+.input-wrapper input[type="password"],
+.input-wrapper input[type="text"] {
+  padding-right: 48px;
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+   ========================================================= */
+
+.primary-btn {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 18px;
+  border: 1px solid #07203f;
+  border-radius: 9px;
+  background: #07203f;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(2, 0, 13, 0.16);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.primary-btn:hover {
+  background: #02000d;
+  border-color: #02000d;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(2, 0, 13, 0.20);
+}
+
+.primary-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(2, 0, 13, 0.14);
+}
+
+
+/* =========================================================
+   FORGOT PASSWORD
+   ========================================================= */
+
+.forgot-password-btn {
+  display: block;
+  margin: 14px auto 0;
+  padding: 4px 6px;
+  border: none;
+  background: transparent;
+  color: #a65e46;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.forgot-password-btn:hover {
+  color: #07203f;
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   LOGIN / REGISTER SWITCH
+   ========================================================= */
+
+.switch-btn {
+  width: 100%;
+  margin-top: 17px;
+  padding: 10px 6px;
+  border: none;
+  background: transparent;
+  color: #07203f;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.switch-btn:hover {
+  color: #a65e46;
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   MESSAGES
+   ========================================================= */
+
+/*
+   Intentionally kept minimal.
+   Validation/errors should use JavaScript alert()
+   instead of a styled message textbox.
+*/
+
+.message {
+  display: none;
+}
+
+
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+
+.dashboard {
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at 90% 0%,
+      rgba(217, 170, 144, 0.18),
+      transparent 28%
+    ),
+    #ebded4;
+}
+
+
+/* =========================================================
+   DASHBOARD HEADER
+   ========================================================= */
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 21px 48px;
+  background: #ffffff;
+  border-bottom: 1px solid #d9aa90;
+  box-shadow: 0 2px 8px rgba(2, 0, 13, 0.06);
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  color: #02000d;
+  font-size: 26px;
+  line-height: 1.2;
+  font-weight: 750;
+  letter-spacing: -0.4px;
+}
+
+.dashboard-header p {
+  margin: 5px 0 0;
+  color: #07203f;
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   ACCOUNT ACTIONS
+   ========================================================= */
+
+.account-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+
+/* =========================================================
+   LOGOUT BUTTON
+   ========================================================= */
+
+.logout-btn {
+  min-height: 38px;
+  padding: 0 17px;
+  border: 1px solid #d9aa90;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #07203f;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: #ebded4;
+  border-color: #a65e46;
+  color: #02000d;
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   DELETE ACCOUNT BUTTON
+   ========================================================= */
+
+.delete-account-btn {
+  min-height: 38px;
+  padding: 0 15px;
+  border: 1px solid #d9aa90;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #07203f;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.delete-account-btn:hover {
+  background: #a65e46;
+  border-color: #a65e46;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   DELETE ACCOUNT PANEL
+   ========================================================= */
+
+.delete-account-panel {
+  width: calc(100% - 48px);
+  max-width: 900px;
+  margin: 24px auto 0;
+  padding: 22px 24px;
+  background: #ffffff;
+  border: 1px solid #d9aa90;
+  border-radius: 12px;
+  box-shadow: 0 5px 18px rgba(2, 0, 13, 0.08);
+  animation: panelAppear 0.25s ease;
+}
+
+@keyframes panelAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.delete-account-panel h3 {
+  margin: 0;
+  color: #02000d;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.delete-account-panel p {
+  max-width: 650px;
+  margin: 7px 0 17px;
+  color: #07203f;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.delete-account-panel input {
+  width: 100%;
+  max-width: 420px;
+  height: 43px;
+  padding: 0 13px;
+  border: 1px solid #d9aa90;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #02000d;
+  font-size: 14px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.delete-account-panel input:focus {
+  border-color: #07203f;
+  box-shadow:
+    0 0 0 3px rgba(7, 32, 63, 0.10);
+}
+
+.delete-account-actions {
+  display: flex;
+  gap: 9px;
+  margin-top: 14px;
+}
+
+
+/* =========================================================
+   SECONDARY BUTTON
+   ========================================================= */
+
+.secondary-btn {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid #d9aa90;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #07203f;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.secondary-btn:hover {
+  background: #ebded4;
+  border-color: #a65e46;
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   PERMANENT DELETE BUTTON
+   ========================================================= */
+
+.delete-confirm-btn {
+  min-height: 40px;
+  padding: 0 17px;
+  border: 1px solid #a65e46;
+  border-radius: 8px;
+  background: #a65e46;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.delete-confirm-btn:hover {
+  background: #07203f;
+  border-color: #07203f;
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   DASHBOARD CONTENT
+   ========================================================= */
+
+.dashboard-content {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 38px 24px 55px;
+}
+
+
+/* =========================================================
+   MAIN TASK CARD
+   ========================================================= */
+
+.task-card {
+  background: #ffffff;
+  border: 1px solid #d9aa90;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow:
+    0 8px 25px rgba(2, 0, 13, 0.07),
+    0 2px 6px rgba(7, 32, 63, 0.04);
+}
+
+
+/* =========================================================
+   TASK CARD HEADER
+   ========================================================= */
+
+.task-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.task-card-header h2 {
+  margin: 0;
+  color: #02000d;
+  font-size: 21px;
+  font-weight: 720;
+  letter-spacing: -0.2px;
+}
+
+.task-card-header p {
+  margin: 5px 0 0;
+  color: #07203f;
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   TASK COUNT
+   ========================================================= */
+
+.task-count {
+  min-width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d9aa90;
+  border-radius: 10px;
+  background: #ebded4;
+  color: #07203f;
+  font-size: 14px;
+  font-weight: 750;
+}
+
+
+/* =========================================================
+   TASK CREATION FORM
+   ========================================================= */
+
+.task-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.task-form input {
+  width: 100%;
+  height: 45px;
+  padding: 0 13px;
+  border: 1px solid #d9aa90;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #02000d;
+  font-size: 14px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.task-form input::placeholder {
+  color: #a65e46;
+  opacity: 0.65;
+}
+
+.task-form input:hover {
+  border-color: #a65e46;
+}
+
+.task-form input:focus {
+  border-color: #07203f;
+  box-shadow:
+    0 0 0 3px rgba(7, 32, 63, 0.09);
+}
+
+.task-form .primary-btn {
+  width: auto;
+  min-width: 105px;
+  padding: 0 20px;
+}
+
+
+/* =========================================================
+   TASK LIST
+   ========================================================= */
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+
+/* =========================================================
+   INDIVIDUAL TASK
+   ========================================================= */
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 19px;
+  background: #ffffff;
+  border: 1px solid #d9aa90;
+  border-radius: 11px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.task-item:hover {
+  border-color: #a65e46;
+  box-shadow:
+    0 5px 15px rgba(2, 0, 13, 0.08);
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   TASK INFORMATION
+   ========================================================= */
+
+.task-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.task-info h3 {
+  margin: 0;
+  color: #02000d;
+  font-size: 15px;
+  font-weight: 680;
+  overflow-wrap: anywhere;
+}
+
+.task-info p {
+  margin: 6px 0 0;
+  color: #07203f;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   TASK ACTIONS
+   ========================================================= */
+
+.task-actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 8px;
+}
+
+
+/* =========================================================
+   DONE BUTTON
+   ========================================================= */
+
+.done-btn {
+  min-height: 34px;
+  padding: 0 13px;
+  border: 1px solid #d9aa90;
+  border-radius: 7px;
+  background: #ebded4;
+  color: #07203f;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.done-btn:hover {
+  background: #07203f;
+  border-color: #07203f;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   DELETE TASK BUTTON
+   ========================================================= */
+
+.delete-btn {
+  min-height: 34px;
+  padding: 0 13px;
+  border: 1px solid #d9aa90;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #a65e46;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.delete-btn:hover {
+  background: #a65e46;
+  border-color: #a65e46;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   EMPTY / LOADING
+   ========================================================= */
+
+.empty-message {
+  margin: 0;
+  padding: 35px 20px;
+  border: 1px dashed #d9aa90;
+  border-radius: 10px;
+  background: #ebded4;
+  text-align: center;
+  color: #07203f;
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   FOCUS ACCESSIBILITY
+   ========================================================= */
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid #d9aa90;
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 850px) {
+  .dashboard-header {
+    padding: 20px 28px;
+  }
+
+  .dashboard-content {
+    padding: 30px 20px 45px;
+  }
+
+  .task-form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .task-form .primary-btn {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .auth-card {
+    width: calc(100% - 28px);
+    padding: 32px 22px 28px;
+    border-radius: 15px;
+  }
+
+  .auth-card h1 {
+    font-size: 29px;
+  }
+
+  .subtitle {
+    margin-bottom: 27px;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 18px 16px;
+    gap: 15px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 23px;
+  }
+
+  .account-actions {
+    width: 100%;
+  }
+
+  .account-actions button {
+    flex: 1;
+  }
+
+  .dashboard-content {
+    padding: 18px 12px 35px;
+  }
+
+  .task-card {
+    padding: 20px 15px;
+    border-radius: 12px;
+  }
+
+  .task-card-header {
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .task-card-header h2 {
+    font-size: 19px;
+  }
+
+  .task-count {
+    min-width: 36px;
+    height: 36px;
+  }
+
+  .task-form {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .task-form .primary-btn {
+    grid-column: auto;
+    width: 100%;
+  }
+
+  .task-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .task-actions {
+    width: 100%;
+  }
+
+  .done-btn,
+  .delete-btn {
+    flex: 1;
+    min-height: 39px;
+  }
+
+  .delete-account-panel {
+    width: calc(100% - 24px);
+    margin-top: 16px;
+    padding: 18px 16px;
+  }
+
+  .delete-account-panel input {
+    max-width: none;
+  }
+
+  .delete-account-actions {
+    flex-direction: column;
+  }
+
+  .secondary-btn,
+  .delete-confirm-btn {
+    width: 100%;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .auth-card {
+    width: calc(100% - 20px);
+    padding: 28px 17px 24px;
+  }
+
+  .auth-card h1 {
+    font-size: 27px;
+  }
+
+  .dashboard-content {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .task-card {
+    padding: 17px 12px;
+  }
+
+  .account-actions {
+    flex-direction: column;
+  }
+
+  .account-actions button {
+    width: 100%;
+  }
+}
+
