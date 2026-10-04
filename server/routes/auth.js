@@ -154,17 +154,17 @@ router.post("/forgot-password", async (req, res) => {
    const resetLink =
   `https://taskgrid-client.onrender.com/?resetToken=${resetToken}`;
 
-    // Send reset email
-    await sendPasswordResetEmail(
-      user.email,
-      user.name,
-      resetLink
-    );
+    
+// Send reset email
+console.log("Sending password reset email to:", user.email);
 
-    res.json({
-      message:
-        "If an account with that email exists, a password reset link has been sent."
-    });
+await sendPasswordResetEmail(
+  user.email,
+  user.name,
+  resetLink
+);
+
+console.log("Password reset email sent successfully");
 
   } catch (error) {
     console.error("Forgot password error:", error);
