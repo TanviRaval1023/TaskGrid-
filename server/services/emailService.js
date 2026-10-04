@@ -1,16 +1,32 @@
-const nodemailer = require("nodemailer");
+const RESEND_API_URL = "https://api.resend.com/emails";
 
-// Create the email transporter
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
+async function sendEmail({ to, subject, text }) {
+  const response = await fetch(RESEND_API_URL, {
+    method: "POST",
 
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASSWORD
+    headers: {
+      "Authorization": `Bearer ${process.env.RESEND_API_KEY}`,
+      "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify({
+      from: "TaskGrid <onboarding@resend.dev>",
+      to: [to],
+      subject,
+      text
+    })
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(
+      data.message || "Failed to send email"
+    );
   }
-});
+
+  return data;
+}
 
 
 // FUNCTION: Send the daily TaskGrid reminder email
@@ -19,18 +35,13 @@ async function sendTaskReminderEmail(
   recipientName,
   pendingTasks
 ) {
-  // Create the list of pending tasks
   const taskList = pendingTasks
     .map((task) => `• ${task.title}`)
     .join("\n");
 
-  // Get the total number of pending tasks
   const taskCount = pendingTasks.length;
 
-  // Send the reminder email
-  await transporter.sendMail({
-    from: `"TaskGrid" <${process.env.EMAIL_USER}>`,
-
+  await sendEmail({
     to: recipientEmail,
 
     subject: "TaskGrid — Your daily task reminder",
@@ -44,7 +55,7 @@ ${taskList}
 Don't forget to complete them!
 
 Open TaskGrid:
-http://localhost:5173/
+https://taskgrid-client.onrender.com/
 
 — TaskGrid`
   });
@@ -57,9 +68,7 @@ async function sendPasswordResetEmail(
   recipientName,
   resetLink
 ) {
-  await transporter.sendMail({
-    from: `"TaskGrid" <${process.env.EMAIL_USER}>`,
-
+  await sendEmail({
     to: recipientEmail,
 
     subject: "TaskGrid — Reset your password",
@@ -80,7 +89,7 @@ If you did not request a password reset, you can safely ignore this email.
   });
 }
 
-// Export the email function
+
 module.exports = {
   sendTaskReminderEmail,
   sendPasswordResetEmail
