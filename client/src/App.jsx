@@ -4,7 +4,7 @@ import { Eye, EyeOff } from "lucide-react";
 import "./App.css";
 
 // Backend API URL
-const API_URL = "https://justin-empirical-sciences-duties.trycloudflare.com";
+const API_URL = "http://localhost:5000";
 
 function App() {
   // =========================================================
