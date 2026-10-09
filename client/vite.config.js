@@ -1,3 +1,4 @@
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
@@ -7,16 +8,23 @@ export default defineConfig({
     react(),
 
     VitePWA({
+      strategies: "generateSW",
+      injectRegister: false,
       registerType: "autoUpdate",
 
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,ico,png,svg,woff2}"],
+        navigateFallback: "index.html",
+        cleanupOutdatedCaches: true,
+      },
+
       manifest: {
+        id: "/",
         name: "TaskGrid",
         short_name: "TaskGrid",
         description: "A simple daily task manager",
-
         theme_color: "#02000d",
         background_color: "#02000d",
-
         display: "standalone",
         start_url: "/",
         scope: "/",
@@ -25,19 +33,19 @@ export default defineConfig({
           {
             src: "/pwa-192x192.png",
             sizes: "192x192",
-            type: "image/png"
+            type: "image/png",
           },
           {
             src: "/pwa-512x512.png",
             sizes: "512x512",
-            type: "image/png"
-          }
-        ]
-      }
-    })
+            type: "image/png",
+          },
+        ],
+      },
+    }),
   ],
 
   preview: {
-    allowedHosts: ["taskgrid-client.onrender.com"]
-  }
+    allowedHosts: ["taskgrid-client.onrender.com"],
+  },
 });

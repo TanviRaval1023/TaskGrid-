@@ -1,32 +1,13 @@
-const RESEND_API_URL = "https://api.resend.com/emails";
+const nodemailer = require("nodemailer");
 
-async function sendEmail({ to, subject, text }) {
-  const response = await fetch(RESEND_API_URL, {
-    method: "POST",
+const transporter = nodemailer.createTransport({
+  service: "gmail",
 
-    headers: {
-      "Authorization": `Bearer ${process.env.RESEND_API_KEY}`,
-      "Content-Type": "application/json"
-    },
-
-    body: JSON.stringify({
-      from: "TaskGrid <onboarding@resend.dev>",
-      to: [to],
-      subject,
-      text
-    })
-  });
-
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(
-      data.message || "Failed to send email"
-    );
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD
   }
-
-  return data;
-}
+});
 
 
 // FUNCTION: Send the daily TaskGrid reminder email
@@ -41,9 +22,9 @@ async function sendTaskReminderEmail(
 
   const taskCount = pendingTasks.length;
 
-  await sendEmail({
+  await transporter.sendMail({
+    from: `"TaskGrid" <${process.env.EMAIL_USER}>`,
     to: recipientEmail,
-
     subject: "TaskGrid — Your daily task reminder",
 
     text: `Hello ${recipientName},
@@ -68,9 +49,9 @@ async function sendPasswordResetEmail(
   recipientName,
   resetLink
 ) {
-  await sendEmail({
+  await transporter.sendMail({
+    from: `"TaskGrid" <${process.env.EMAIL_USER}>`,
     to: recipientEmail,
-
     subject: "TaskGrid — Reset your password",
 
     text: `Hello ${recipientName},
