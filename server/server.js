@@ -4,8 +4,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-//const { sendTaskReminderEmail } = require("./services/emailService");
-
 const { startReminderScheduler } = require("./scheduler/reminderScheduler");
 
 const authRoutes = require("./routes/auth");
@@ -21,13 +19,20 @@ app.use(cors());
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 
+// Test route
+app.get("/", (req, res) => {
+  res.json({
+    message: "TaskGrid server is running locally!"
+  });
+});
 
+// Connect to MongoDB
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("MongoDB connected successfully!");
 
-    // Start the automatic task reminder scheduler
+    // Start automatic task reminders
     startReminderScheduler();
 
     app.listen(PORT, () => {
@@ -38,9 +43,3 @@ mongoose
     console.error("MongoDB connection failed:");
     console.error(error.message);
   });
-
-app.get("/", (req, res) => {
-  res.json({
-    message: "TaskGrid server is running!"
-  });
-});
