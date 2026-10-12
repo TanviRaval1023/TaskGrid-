@@ -1,1017 +1,514 @@
+/* TASKGRID — MIDNIGHT SAPPHIRE | Complete App.css replacement */
+:root {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #eaf7ff;
+  background: #04111e;
+  font-synthesis: none;
+  --ink: #eaf7ff;
+  --muted: #a3bed1;
+  --line: rgba(165, 220, 252, .23);
+  --glass: rgba(9, 30, 49, .78);
+  --blue: #69c6f3;
+  --blue-deep: #247eb6;
+  --danger: #ff9aab;
+}
+* { box-sizing: border-box; }
+html, body, #root { margin: 0; min-height: 100%; }
+body { color: var(--ink); background: #04111e; }
+button, input { font: inherit; }
+button { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, input:focus-visible { outline: 2px solid #a3e6ff; outline-offset: 3px; }
+.app { position: relative; isolation: isolate; min-height: 100vh; min-height: 100dvh; overflow-x: hidden; background: radial-gradient(ellipse at 84% 8%, rgba(43, 131, 183, .32), transparent 42%), radial-gradient(ellipse at 8% 88%, rgba(25, 91, 141, .25), transparent 45%), linear-gradient(135deg, #03101c 0%, #0a2438 53%, #04121f 100%); }
+.app::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .55; background: radial-gradient(circle at 80% 26%, rgba(181, 235, 255, .12) 0 2px, transparent 3px), radial-gradient(circle at 18% 70%, rgba(181, 235, 255, .12) 0 1px, transparent 3px), radial-gradient(ellipse at 50% 105%, rgba(53, 149, 207, .19), transparent 50%); }
+/* Authentication */
+.auth-card { position: relative; width: min(440px, calc(100% - 32px)); margin: max(48px, calc((100dvh - 560px) / 2)) auto 48px; padding: 44px 38px 36px; border: 1px solid var(--line); border-radius: 22px; background: linear-gradient(150deg, rgba(18, 53, 79, .88), rgba(5, 21, 36, .93)); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); box-shadow: 0 30px 90px rgba(0, 5, 13, .45), inset 0 1px rgba(227, 248, 255, .11), 0 0 70px rgba(47, 151, 218, .10); animation: rise .5s ease both; }
+.auth-card::before { content: ""; position: absolute; top: 0; left: 18%; right: 18%; height: 1px; background: linear-gradient(90deg, transparent, #a7e4ff, transparent); opacity: .8; }
+.auth-card h1 { margin: 0; text-align: center; font-size: clamp(32px, 6vw, 40px); font-weight: 650; letter-spacing: -.055em; color: #f2fbff; text-shadow: 0 0 30px rgba(117, 203, 252, .22); }
+.subtitle { margin: 9px 0 32px; text-align: center; font-size: 13px; line-height: 1.65; color: var(--muted); letter-spacing: .02em; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 9px; color: #c8e6f6; font-size: 12px; font-weight: 600; letter-spacing: .045em; }
+.form-group input, .task-form input, .delete-account-panel input { width: 100%; min-width: 0; height: 47px; padding: 0 15px; color: #f1faff; background: rgba(2, 16, 29, .67); border: 1px solid rgba(151, 207, 239, .24); border-radius: 10px; outline: none; font-size: 13px; transition: border-color .2s, box-shadow .2s, background .2s; }
+.form-group input::placeholder, .task-form input::placeholder, .delete-account-panel input::placeholder { color: #86a5bb; opacity: 1; }
+.form-group input:hover, .task-form input:hover, .delete-account-panel input:hover { border-color: rgba(158, 220, 255, .49); }
+.form-group input:focus, .task-form input:focus, .delete-account-panel input:focus { border-color: #7bd1ff; background: rgba(5, 24, 40, .96); box-shadow: 0 0 0 3px rgba(74, 174, 233, .13), 0 0 20px rgba(70, 165, 225, .08); }
+.input-wrapper { position: relative; width: 100%; }
+.input-icon { position: absolute; right: 13px; top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 25px; height: 25px; font-size: 16px; color: #a9d8f2; pointer-events: none; }
+.input-wrapper input[type="email"], .input-wrapper input[type="password"], .input-wrapper input[type="text"] { padding-right: 47px; }
+.password-toggle { position: absolute; right: 9px; top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 33px; height: 33px; padding: 0; border: 0; border-radius: 8px; background: transparent; color: #a9d8f2; cursor: pointer; transition: background .2s, color .2s; }
+.password-toggle:hover { background: rgba(115, 196, 241, .14); color: #fff; }
+.primary-btn { display: inline-flex; justify-content: center; align-items: center; width: 100%; min-height: 47px; padding: 11px 20px; border: 1px solid rgba(167, 230, 255, .5); border-radius: 10px; background: linear-gradient(115deg, #1b6495, #3a9bd0 70%, #67bfe8); color: #fff; font-size: 13px; font-weight: 650; letter-spacing: .02em; cursor: pointer; box-shadow: inset 0 1px rgba(255,255,255,.17), 0 7px 24px rgba(30, 135, 207, .21); transition: transform .2s, box-shadow .2s, filter .2s; }
+.primary-btn:hover { transform: translateY(-2px); filter: brightness(1.1); box-shadow: 0 10px 30px rgba(48, 164, 231, .3); }
+.primary-btn:active { transform: translateY(0); }
+.forgot-password-btn, .switch-btn { border: 0; background: transparent; color: #a9dfff; cursor: pointer; font-size: 12px; transition: color .2s; }
+.forgot-password-btn { display: block; margin: 17px auto 0; padding: 5px; }
+.switch-btn { display: block; width: 100%; margin-top: 15px; padding: 10px 4px; }
+.forgot-password-btn:hover, .switch-btn:hover { color: white; text-decoration: underline; text-underline-offset: 4px; }
+.message { display: none; }
+/* Dashboard */
+.dashboard { min-height: 100vh; min-height: 100dvh; }
+.dashboard-header { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 25px clamp(20px, 5vw, 74px); border-bottom: 1px solid rgba(170, 221, 248, .17); background: rgba(5, 20, 34, .56); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 5px 32px rgba(0, 7, 16, .13); }
+.dashboard-header h1 { margin: 0; color: #f3fbff; font-size: 27px; font-weight: 650; letter-spacing: -.055em; }
+.dashboard-header p { margin: 5px 0 0; color: var(--muted); font-size: 12px; }
+.account-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.logout-btn, .delete-account-btn, .secondary-btn, .delete-confirm-btn, .done-btn, .delete-btn { display: inline-flex; justify-content: center; align-items: center; min-height: 39px; padding: 9px 16px; border: 1px solid var(--line); border-radius: 9px; background: rgba(13, 43, 65, .65); color: #d3ecfa; font-size: 12px; font-weight: 600; cursor: pointer; transition: background .2s, border-color .2s, color .2s, transform .2s; }
+.logout-btn:hover, .secondary-btn:hover { background: rgba(58, 133, 177, .25); border-color: #79c6f1; color: #fff; transform: translateY(-1px); }
+.delete-account-btn { color: #ffc4ce; border-color: rgba(255, 154, 171, .28); }
+.delete-account-btn:hover, .delete-btn:hover, .delete-confirm-btn:hover { background: rgba(166, 50, 78, .28); border-color: #ff9aab; color: #fff; transform: translateY(-1px); }
+.dashboard-content { width: 100%; max-width: 1120px; margin: 0 auto; padding: clamp(25px, 5vw, 58px) 24px 70px; }
+.task-card { position: relative; padding: clamp(22px, 4vw, 42px); border: 1px solid var(--line); border-radius: 22px; background: linear-gradient(135deg, rgba(15, 47, 71, .82), rgba(5, 23, 40, .85)); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 24px 65px rgba(0, 7, 17, .27), inset 0 1px rgba(255,255,255,.08); }
+.task-card::before { content: ""; position: absolute; top: 0; left: 6%; width: 44%; height: 1px; background: linear-gradient(90deg, transparent, rgba(158, 227, 255, .65), transparent); }
+.task-card-header { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 28px; }
+.task-card-header h2 { margin: 0; color: #f3fbff; font-size: clamp(21px, 3vw, 27px); font-weight: 620; letter-spacing: -.035em; }
+.task-card-header p { margin: 7px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.task-count { display: grid; place-items: center; flex: 0 0 auto; min-width: 43px; height: 43px; padding: 0 10px; border: 1px solid rgba(135, 213, 251, .34); border-radius: 12px; background: rgba(40, 117, 162, .22); color: #c9efff; font-size: 15px; font-weight: 700; box-shadow: inset 0 1px rgba(255,255,255,.06); }
+.task-form { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto; gap: 11px; margin-bottom: 28px; }
+.task-form .primary-btn { width: auto; min-width: 113px; }
+.task-list { display: flex; flex-direction: column; gap: 12px; }
+.task-item { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 19px 20px; border: 1px solid rgba(153, 210, 243, .17); border-radius: 13px; background: linear-gradient(110deg, rgba(24, 65, 91, .53), rgba(8, 30, 48, .69)); transition: transform .2s, border-color .2s, box-shadow .2s; }
+.task-item:hover { transform: translateY(-2px); border-color: rgba(137, 214, 255, .51); box-shadow: 0 9px 27px rgba(0, 8, 18, .2), 0 0 24px rgba(63, 155, 214, .07); }
+.task-info { flex: 1; min-width: 0; }
+.task-info h3 { margin: 0; color: #f0f9ff; font-size: 14px; font-weight: 650; overflow-wrap: anywhere; }
+.task-info p { margin: 7px 0 0; color: var(--muted); font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
+.task-actions { display: flex; flex: 0 0 auto; gap: 9px; }
+.done-btn, .delete-btn { min-height: 36px; padding: 8px 14px; }
+.done-btn { background: rgba(39, 118, 159, .23); color: #bfeaff; border-color: rgba(115, 207, 250, .32); }
+.done-btn:hover { background: #247faf; color: #fff; border-color: #82d8ff; transform: translateY(-1px); }
+.delete-btn { color: #ffc4ce; border-color: rgba(255, 154, 171, .24); background: rgba(91, 34, 55, .13); }
+.empty-message { margin: 0; padding: 38px 20px; border: 1px dashed rgba(154, 218, 249, .26); border-radius: 12px; background: rgba(10, 34, 54, .43); color: #b5d2e4; font-size: 13px; text-align: center; }
+/* Account deletion */
+.delete-account-panel { width: min(1068px, calc(100% - 48px)); margin: 24px auto 0; padding: 24px; border: 1px solid rgba(255, 154, 171, .32); border-radius: 14px; background: rgba(29, 28, 44, .83); box-shadow: 0 15px 35px rgba(0,0,0,.19); animation: rise .25s ease both; }
+.delete-account-panel h3 { margin: 0; color: #ffe2e7; font-size: 17px; }
+.delete-account-panel p { max-width: 680px; margin: 8px 0 18px; color: #d2b9c3; font-size: 13px; line-height: 1.6; }
+.delete-account-panel input { max-width: 430px; }
+.delete-account-actions { display: flex; gap: 10px; margin-top: 14px; }
+.delete-confirm-btn { background: #923d59; border-color: #bd6680; color: #fff; }
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 850px) { .dashboard-header { padding: 21px 26px; } .dashboard-content { padding: 32px 20px 52px; } .task-form { grid-template-columns: repeat(2, minmax(0, 1fr)); } .task-form .primary-btn { grid-column: 1 / -1; width: 100%; } }
+@media (max-width: 600px) { .auth-card { width: calc(100% - 28px); margin: max(22px, calc((100dvh - 530px) / 2)) auto 25px; padding: 34px 23px 28px; border-radius: 17px; } .dashboard-header { flex-direction: column; align-items: stretch; gap: 16px; padding: 20px 17px; } .dashboard-header h1 { font-size: 25px; } .account-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; } .account-actions button { width: 100%; } .dashboard-content { padding: 20px 12px 40px; } .task-card { padding: 22px 16px; border-radius: 16px; } .task-card-header { align-items: flex-start; gap: 12px; margin-bottom: 22px; } .task-form { grid-template-columns: 1fr; gap: 10px; } .task-form .primary-btn { grid-column: auto; } .task-item { flex-direction: column; align-items: stretch; padding: 16px; gap: 15px; } .task-actions { width: 100%; } .done-btn, .delete-btn { flex: 1; min-height: 41px; } .delete-account-panel { width: calc(100% - 24px); padding: 19px 16px; margin-top: 15px; } .delete-account-panel input { max-width: none; } .delete-account-actions { flex-direction: column; } .secondary-btn, .delete-confirm-btn { width: 100%; } }
+@media (max-width: 380px) { .auth-card { width: calc(100% - 20px); padding: 29px 18px 24px; } .account-actions { grid-template-columns: 1fr; } .dashboard-content { padding-left: 9px; padding-right: 9px; } .task-card { padding: 19px 13px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
 
 /* =========================================================
-   GLOBAL
+   TASKGRID — AURORA MOTION + SAPPHIRE GLASS TASK CARDS
+   Applies to login AND dashboard; no JSX changes needed.
    ========================================================= */
 
-* {
-  box-sizing: border-box;
+/* Animated atmosphere: slow-moving luminous blue pools */
+.app {
+  position: relative;
+  isolation: isolate;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: linear-gradient(130deg, #020b16 0%, #071b2d 50%, #020e1b 100%);
+}
+.app::before,
+.app::after {
+  content: "";
+  position: fixed;
+  inset: -35%;
+  pointer-events: none;
+  z-index: -1;
+  will-change: transform;
+}
+.app::before {
+  opacity: .85;
+  background:
+    radial-gradient(ellipse 32% 30% at 22% 26%, rgba(25, 126, 191, .34), transparent 76%),
+    radial-gradient(ellipse 31% 28% at 76% 63%, rgba(26, 88, 169, .33), transparent 77%),
+    radial-gradient(ellipse 26% 28% at 54% 12%, rgba(59, 176, 209, .15), transparent 77%);
+  animation: sapphireDrift 24s ease-in-out infinite alternate;
+}
+.app::after {
+  opacity: .7;
+  background:
+    radial-gradient(ellipse 23% 21% at 78% 19%, rgba(119, 204, 255, .18), transparent 78%),
+    radial-gradient(ellipse 28% 26% at 22% 80%, rgba(15, 98, 173, .27), transparent 77%);
+  animation: sapphireFloat 30s ease-in-out infinite alternate;
+}
+@keyframes sapphireDrift {
+  0% { transform: translate3d(-6%, -4%, 0) rotate(-8deg) scale(1); }
+  50% { transform: translate3d(6%, 4%, 0) rotate(4deg) scale(1.07); }
+  100% { transform: translate3d(-1%, 8%, 0) rotate(12deg) scale(1.02); }
+}
+@keyframes sapphireFloat {
+  0% { transform: translate3d(5%, 5%, 0) scale(1); }
+  50% { transform: translate3d(-7%, -3%, 0) scale(1.12); }
+  100% { transform: translate3d(2%, -8%, 0) scale(1.03); }
+}
+/* Content stays above the ambient layers */
+.app > .auth-card,
+.app > .dashboard { position: relative; z-index: 1; }
+.dashboard { background: transparent; }
+
+/* Subtle optical highlight on the main panels */
+.auth-card,
+.task-card {
+  border-color: rgba(164, 219, 255, .28);
+  box-shadow:
+    0 22px 65px rgba(0, 6, 18, .32),
+    inset 0 1px 0 rgba(240, 252, 255, .16),
+    0 0 42px rgba(55, 151, 224, .08);
 }
 
-html,
-body,
-#root {
-  margin: 0;
-  min-height: 100%;
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
+/* Task entries are individual glass tiles rather than list rows */
+.task-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 18px;
+}
+.task-item {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  min-width: 0;
+  min-height: 194px;
+  padding: 24px 22px 19px;
+  overflow: hidden;
+  border: 1px solid rgba(187, 231, 255, .43);
+  border-radius: 23px;
+  background:
+    linear-gradient(146deg, rgba(200, 234, 255, .19) 0%, rgba(71, 153, 204, .12) 32%, rgba(13, 43, 73, .37) 70%, rgba(137, 202, 245, .12) 100%);
+  -webkit-backdrop-filter: blur(22px) saturate(155%);
+  backdrop-filter: blur(22px) saturate(155%);
+  box-shadow:
+    0 16px 32px rgba(0, 5, 16, .24),
+    0 5px 11px rgba(0, 9, 25, .17),
+    inset 0 2px 1px rgba(248, 253, 255, .38),
+    inset 0 -2px 5px rgba(1, 17, 34, .28),
+    inset 2px 0 2px rgba(195, 234, 255, .16),
+    0 0 26px rgba(76, 164, 235, .08);
+  transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+}
+/* Glossy reflective edge and specular sweep */
+.task-item::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    radial-gradient(ellipse 75% 45% at 24% -10%, rgba(236, 250, 255, .29), transparent 72%),
+    linear-gradient(120deg, rgba(244, 252, 255, .10), transparent 45%);
+}
+.task-item::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -65%;
+  width: 46%;
+  height: 300%;
+  z-index: -1;
+  pointer-events: none;
+  transform: rotate(24deg);
+  background: linear-gradient(90deg, transparent, rgba(231, 248, 255, .14), transparent);
+  transition: left .7s ease;
+}
+.task-item:hover {
+  transform: translateY(-5px);
+  border-color: rgba(212, 242, 255, .76);
+  box-shadow:
+    0 23px 45px rgba(0, 7, 23, .33),
+    inset 0 2px 1px rgba(255, 255, 255, .52),
+    inset 0 -2px 6px rgba(3, 26, 46, .25),
+    0 0 32px rgba(94, 190, 247, .17);
+}
+.task-item:hover::after { left: 145%; }
+.task-info { width: 100%; margin-bottom: 24px; }
+.task-info h3 { color: #f4fbff; font-size: 16px; line-height: 1.45; letter-spacing: -.01em; }
+.task-info p { color: #b7d6e9; font-size: 13px; line-height: 1.65; }
+.task-actions { display: flex; width: 100%; gap: 10px; }
+.task-actions .done-btn,
+.task-actions .delete-btn {
+  flex: 1;
+  min-height: 39px;
+  border-radius: 11px;
+  background: rgba(181, 225, 250, .09);
+  border: 1px solid rgba(180, 227, 255, .24);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px rgba(244, 251, 255, .13);
+}
+.task-actions .done-btn { color: #c6f1ff; }
+.task-actions .delete-btn { color: #ffc6d2; }
+.task-actions .done-btn:hover { background: rgba(51, 150, 197, .45); border-color: #8cd9ff; }
+.task-actions .delete-btn:hover { background: rgba(154, 61, 90, .36); border-color: #ffafc0; }
+/* Empty state occupies the full grid width */
+.task-list > .empty-message { grid-column: 1 / -1; }
+
+@media (max-width: 760px) {
+  .task-list { grid-template-columns: 1fr; gap: 15px; }
+  .task-item { min-height: 165px; padding: 21px 19px 18px; }
+}
+@media (max-width: 600px) {
+  .task-item { flex-direction: column; align-items: stretch; }
+  .task-actions { width: 100%; }
+  .app::before, .app::after { inset: -50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app::before, .app::after { animation: none !important; transform: none !important; }
+  .task-item::after { transition: none !important; }
 }
 
-body {
-  background: #ebded4;
-  color: #02000d;
-}
 
-button,
-input {
-  font-family: inherit;
-}
 
-button {
-  -webkit-tap-highlight-color: transparent;
-}
+/* =====================================================
+   TASKGRID — MIDNIGHT OCEAN REFINED EDITION
+   ===================================================== */
+
+/* BACKGROUND */
 
 .app {
+  position: relative;
+  isolation: isolate;
   min-height: 100vh;
-  background:
-    radial-gradient(
-      circle at top right,
-      rgba(217, 170, 144, 0.20),
-      transparent 35%
-    ),
-    #ebded4;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  background: #030c17;
 }
 
+/* Sharp ocean background with controlled movement */
 
-/* =========================================================
-   LOGIN / REGISTER PAGE
-   ========================================================= */
+.app::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+
+  background-image: url("/midnight-ocean.png");
+  background-repeat: no-repeat;
+
+  /* Preserve the complete image rather than cropping it */
+  background-size: 100% 100%;
+  background-position: center;
+
+  opacity: 0.92;
+
+  animation: oceanPan 18s ease-in-out infinite alternate;
+}
+
+/* Very subtle dark overlay for text readability */
+
+.app::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background: linear-gradient(
+    180deg,
+    rgba(2, 8, 18, 0.06),
+    rgba(2, 9, 20, 0.18)
+  );
+
+  animation: none;
+}
+
+/* Noticeable but restrained movement */
+
+@keyframes oceanPan {
+  0% {
+    transform: translateX(-1.5%);
+  }
+
+  100% {
+    transform: translateX(1.5%);
+  }
+}
+
+/* LOGIN CARD */
 
 .auth-card {
-  width: calc(100% - 32px);
-  max-width: 450px;
-  padding: 42px 40px 36px;
-  background: #ffffff;
-  border: 1px solid rgba(217, 170, 144, 0.55);
+  background: rgba(5, 19, 35, 0.88);
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  border: 1px solid rgba(155, 195, 220, 0.24);
+
   border-radius: 18px;
+
   box-shadow:
-    0 18px 45px rgba(2, 0, 13, 0.14),
-    0 3px 10px rgba(7, 32, 63, 0.06);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: authAppear 0.45s ease;
+    0 22px 55px rgba(0, 0, 0, 0.38),
+    inset 0 1px rgba(255, 255, 255, 0.08);
 }
 
-@keyframes authAppear {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -47%);
-  }
+/* DASHBOARD */
 
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
+.dashboard {
+  background: transparent;
 }
 
+.dashboard-header {
+  background: rgba(4, 16, 30, 0.9);
 
-/* =========================================================
-   BRAND / TITLE
-   ========================================================= */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 
-.auth-card h1 {
-  margin: 0;
-  text-align: center;
-  font-size: 34px;
-  line-height: 1.2;
-  font-weight: 750;
-  letter-spacing: -0.8px;
-  color: #02000d;
+  border-bottom: 1px solid rgba(150, 190, 220, 0.16);
+
+  box-shadow: none;
 }
 
-.subtitle {
-  margin: 9px 0 32px;
-  text-align: center;
-  color: #07203f;
-  font-size: 14px;
-  line-height: 1.5;
-}
+/* MAIN TASK PANEL */
 
+.task-card {
+  background: rgba(5, 20, 37, 0.9);
 
-/* =========================================================
-   FORM
-   ========================================================= */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 
-.form-group {
-  margin-bottom: 19px;
-}
+  border: 1px solid rgba(155, 195, 220, 0.2);
 
-.form-group label {
-  display: block;
-  margin-bottom: 8px;
-  color: #07203f;
-  font-size: 13px;
-  font-weight: 650;
-}
+  border-radius: 18px;
 
-.form-group input {
-  width: 100%;
-  height: 46px;
-  padding: 0 14px;
-  border: 1px solid #d9aa90;
-  border-radius: 9px;
-  outline: none;
-  background: #ffffff;
-  color: #02000d;
-  font-size: 14px;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    background 0.2s ease;
-}
-
-.form-group input::placeholder {
-  color: #a65e46;
-  opacity: 0.65;
-}
-
-.form-group input:hover {
-  border-color: #a65e46;
-}
-
-.form-group input:focus {
-  border-color: #07203f;
   box-shadow:
-    0 0 0 3px rgba(7, 32, 63, 0.10);
-  background: #ffffff;
+    0 20px 50px rgba(0, 0, 0, 0.26);
 }
 
+/* INDIVIDUAL TASK CARDS */
 
-/* =========================================================
-   INPUT ICON WRAPPER
-   ========================================================= */
+.task-item {
+  min-height: 180px;
 
-.input-wrapper {
-  position: relative;
-  width: 100%;
-}
+  background: linear-gradient(
+    145deg,
+    rgba(23, 49, 72, 0.92),
+    rgba(8, 27, 47, 0.95)
+  );
 
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 
-/* =========================================================
-   EMAIL ICON
-   ========================================================= */
+  border: 1px solid rgba(170, 210, 235, 0.22);
 
-.input-icon {
-  position: absolute;
-  right: 13px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  color: #07203f;
-  font-size: 16px;
-  pointer-events: none;
-}
+  border-radius: 16px;
 
-.input-wrapper input[type="email"] {
-  padding-right: 46px;
-}
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.22),
+    inset 0 1px rgba(255, 255, 255, 0.08);
 
-
-/* =========================================================
-   PASSWORD EYE BUTTON
-   ========================================================= */
-
-.password-toggle {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  border: none;
-  border-radius: 6px;
-  background: transparent;
-  color: #07203f;
-  cursor: pointer;
-  font-size: 17px;
   transition:
-    background 0.2s ease,
-    color 0.2s ease;
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
-.password-toggle:hover {
-  background: #ebded4;
-  color: #02000d;
-}
+/* Remove excessive glossy reflections */
 
-.password-toggle:focus-visible {
-  outline: 2px solid #d9aa90;
-  outline-offset: 1px;
-}
-
-.input-wrapper input[type="password"],
-.input-wrapper input[type="text"] {
-  padding-right: 48px;
-}
-
-
-/* =========================================================
-   PRIMARY BUTTON
-   ========================================================= */
-
-.primary-btn {
-  width: 100%;
-  min-height: 46px;
-  padding: 0 18px;
-  border: 1px solid #07203f;
-  border-radius: 9px;
-  background: #07203f;
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 650;
-  cursor: pointer;
-  box-shadow: 0 3px 8px rgba(2, 0, 13, 0.16);
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.primary-btn:hover {
-  background: #02000d;
-  border-color: #02000d;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 14px rgba(2, 0, 13, 0.20);
-}
-
-.primary-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 6px rgba(2, 0, 13, 0.14);
-}
-
-
-/* =========================================================
-   FORGOT PASSWORD
-   ========================================================= */
-
-.forgot-password-btn {
-  display: block;
-  margin: 14px auto 0;
-  padding: 4px 6px;
-  border: none;
-  background: transparent;
-  color: #a65e46;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    color 0.2s ease,
-    opacity 0.2s ease;
-}
-
-.forgot-password-btn:hover {
-  color: #07203f;
-  text-decoration: underline;
-}
-
-
-/* =========================================================
-   LOGIN / REGISTER SWITCH
-   ========================================================= */
-
-.switch-btn {
-  width: 100%;
-  margin-top: 17px;
-  padding: 10px 6px;
-  border: none;
-  background: transparent;
-  color: #07203f;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.switch-btn:hover {
-  color: #a65e46;
-  text-decoration: underline;
-}
-
-
-/* =========================================================
-   MESSAGES
-   ========================================================= */
-
-/*
-   Intentionally kept minimal.
-   Validation/errors should use JavaScript alert()
-   instead of a styled message textbox.
-*/
-
-.message {
+.task-item::before,
+.task-item::after {
   display: none;
 }
 
-
-/* =========================================================
-   DASHBOARD
-   ========================================================= */
-
-.dashboard {
-  min-height: 100vh;
-  background:
-    radial-gradient(
-      circle at 90% 0%,
-      rgba(217, 170, 144, 0.18),
-      transparent 28%
-    ),
-    #ebded4;
-}
-
-
-/* =========================================================
-   DASHBOARD HEADER
-   ========================================================= */
-
-.dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  padding: 21px 48px;
-  background: #ffffff;
-  border-bottom: 1px solid #d9aa90;
-  box-shadow: 0 2px 8px rgba(2, 0, 13, 0.06);
-}
-
-.dashboard-header h1 {
-  margin: 0;
-  color: #02000d;
-  font-size: 26px;
-  line-height: 1.2;
-  font-weight: 750;
-  letter-spacing: -0.4px;
-}
-
-.dashboard-header p {
-  margin: 5px 0 0;
-  color: #07203f;
-  font-size: 13px;
-}
-
-
-/* =========================================================
-   ACCOUNT ACTIONS
-   ========================================================= */
-
-.account-actions {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-}
-
-
-/* =========================================================
-   LOGOUT BUTTON
-   ========================================================= */
-
-.logout-btn {
-  min-height: 38px;
-  padding: 0 17px;
-  border: 1px solid #d9aa90;
-  border-radius: 8px;
-  background: #ffffff;
-  color: #07203f;
-  font-size: 13px;
-  font-weight: 650;
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.logout-btn:hover {
-  background: #ebded4;
-  border-color: #a65e46;
-  color: #02000d;
-  transform: translateY(-1px);
-}
-
-
-/* =========================================================
-   DELETE ACCOUNT BUTTON
-   ========================================================= */
-
-.delete-account-btn {
-  min-height: 38px;
-  padding: 0 15px;
-  border: 1px solid #d9aa90;
-  border-radius: 8px;
-  background: #ffffff;
-  color: #07203f;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.delete-account-btn:hover {
-  background: #a65e46;
-  border-color: #a65e46;
-  color: #ffffff;
-  transform: translateY(-1px);
-}
-
-
-/* =========================================================
-   DELETE ACCOUNT PANEL
-   ========================================================= */
-
-.delete-account-panel {
-  width: calc(100% - 48px);
-  max-width: 900px;
-  margin: 24px auto 0;
-  padding: 22px 24px;
-  background: #ffffff;
-  border: 1px solid #d9aa90;
-  border-radius: 12px;
-  box-shadow: 0 5px 18px rgba(2, 0, 13, 0.08);
-  animation: panelAppear 0.25s ease;
-}
-
-@keyframes panelAppear {
-  from {
-    opacity: 0;
-    transform: translateY(-5px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.delete-account-panel h3 {
-  margin: 0;
-  color: #02000d;
-  font-size: 17px;
-  font-weight: 700;
-}
-
-.delete-account-panel p {
-  max-width: 650px;
-  margin: 7px 0 17px;
-  color: #07203f;
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-.delete-account-panel input {
-  width: 100%;
-  max-width: 420px;
-  height: 43px;
-  padding: 0 13px;
-  border: 1px solid #d9aa90;
-  border-radius: 8px;
-  outline: none;
-  background: #ffffff;
-  color: #02000d;
-  font-size: 14px;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.delete-account-panel input:focus {
-  border-color: #07203f;
-  box-shadow:
-    0 0 0 3px rgba(7, 32, 63, 0.10);
-}
-
-.delete-account-actions {
-  display: flex;
-  gap: 9px;
-  margin-top: 14px;
-}
-
-
-/* =========================================================
-   SECONDARY BUTTON
-   ========================================================= */
-
-.secondary-btn {
-  min-height: 40px;
-  padding: 0 16px;
-  border: 1px solid #d9aa90;
-  border-radius: 8px;
-  background: #ffffff;
-  color: #07203f;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.secondary-btn:hover {
-  background: #ebded4;
-  border-color: #a65e46;
-  transform: translateY(-1px);
-}
-
-
-/* =========================================================
-   PERMANENT DELETE BUTTON
-   ========================================================= */
-
-.delete-confirm-btn {
-  min-height: 40px;
-  padding: 0 17px;
-  border: 1px solid #a65e46;
-  border-radius: 8px;
-  background: #a65e46;
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 650;
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.delete-confirm-btn:hover {
-  background: #07203f;
-  border-color: #07203f;
-  transform: translateY(-1px);
-}
-
-
-/* =========================================================
-   DASHBOARD CONTENT
-   ========================================================= */
-
-.dashboard-content {
-  width: 100%;
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 38px 24px 55px;
-}
-
-
-/* =========================================================
-   MAIN TASK CARD
-   ========================================================= */
-
-.task-card {
-  background: #ffffff;
-  border: 1px solid #d9aa90;
-  border-radius: 15px;
-  padding: 30px;
-  box-shadow:
-    0 8px 25px rgba(2, 0, 13, 0.07),
-    0 2px 6px rgba(7, 32, 63, 0.04);
-}
-
-
-/* =========================================================
-   TASK CARD HEADER
-   ========================================================= */
-
-.task-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 25px;
-}
-
-.task-card-header h2 {
-  margin: 0;
-  color: #02000d;
-  font-size: 21px;
-  font-weight: 720;
-  letter-spacing: -0.2px;
-}
-
-.task-card-header p {
-  margin: 5px 0 0;
-  color: #07203f;
-  font-size: 13px;
-}
-
-
-/* =========================================================
-   TASK COUNT
-   ========================================================= */
-
-.task-count {
-  min-width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #d9aa90;
-  border-radius: 10px;
-  background: #ebded4;
-  color: #07203f;
-  font-size: 14px;
-  font-weight: 750;
-}
-
-
-/* =========================================================
-   TASK CREATION FORM
-   ========================================================= */
-
-.task-form {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
-  gap: 10px;
-  margin-bottom: 25px;
-}
-
-.task-form input {
-  width: 100%;
-  height: 45px;
-  padding: 0 13px;
-  border: 1px solid #d9aa90;
-  border-radius: 8px;
-  outline: none;
-  background: #ffffff;
-  color: #02000d;
-  font-size: 14px;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.task-form input::placeholder {
-  color: #a65e46;
-  opacity: 0.65;
-}
-
-.task-form input:hover {
-  border-color: #a65e46;
-}
-
-.task-form input:focus {
-  border-color: #07203f;
-  box-shadow:
-    0 0 0 3px rgba(7, 32, 63, 0.09);
-}
-
-.task-form .primary-btn {
-  width: auto;
-  min-width: 105px;
-  padding: 0 20px;
-}
-
-
-/* =========================================================
-   TASK LIST
-   ========================================================= */
-
-.task-list {
-  display: flex;
-  flex-direction: column;
-  gap: 11px;
-}
-
-
-/* =========================================================
-   INDIVIDUAL TASK
-   ========================================================= */
-
-.task-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  padding: 18px 19px;
-  background: #ffffff;
-  border: 1px solid #d9aa90;
-  border-radius: 11px;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
-}
+/* Subtle hover */
 
 .task-item:hover {
-  border-color: #a65e46;
+  transform: translateY(-3px);
+
+  background: linear-gradient(
+    145deg,
+    rgba(27, 55, 80, 0.95),
+    rgba(10, 31, 53, 0.97)
+  );
+
+  border-color: rgba(160, 210, 240, 0.4);
+
   box-shadow:
-    0 5px 15px rgba(2, 0, 13, 0.08);
+    0 15px 32px rgba(0, 0, 0, 0.28);
+}
+
+/* REFINED BUTTONS */
+
+.primary-btn {
+  background: linear-gradient(
+    135deg,
+    #174b70,
+    #246b96
+  );
+
+  border: 1px solid rgba(155, 210, 240, 0.35);
+
+  border-radius: 9px;
+
+  color: #f0f8ff;
+
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.16),
+    inset 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.primary-btn:hover {
+  background: linear-gradient(
+    135deg,
+    #1c5b85,
+    #2b7daa
+  );
+
   transform: translateY(-1px);
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.2);
 }
 
+/* TASK ACTION BUTTONS */
 
-/* =========================================================
-   TASK INFORMATION
-   ========================================================= */
+.task-actions .done-btn,
+.task-actions .delete-btn {
+  background: rgba(16, 43, 65, 0.88);
 
-.task-info {
-  flex: 1;
-  min-width: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+
+  border: 1px solid rgba(150, 195, 225, 0.2);
+
+  border-radius: 8px;
+
+  box-shadow: none;
 }
 
-.task-info h3 {
-  margin: 0;
-  color: #02000d;
-  font-size: 15px;
-  font-weight: 680;
-  overflow-wrap: anywhere;
+/* FORM INPUTS */
+
+.form-group input,
+.task-form input,
+.delete-account-panel input {
+  background: rgba(3, 15, 28, 0.82);
+
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+
+  border: 1px solid rgba(145, 190, 220, 0.22);
 }
 
-.task-info p {
-  margin: 6px 0 0;
-  color: #07203f;
-  font-size: 13px;
-  line-height: 1.5;
-  overflow-wrap: anywhere;
+/* DELETE ACCOUNT PANEL */
+
+.delete-account-panel {
+  background: rgba(8, 20, 35, 0.95);
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
-
-/* =========================================================
-   TASK ACTIONS
-   ========================================================= */
-
-.task-actions {
-  display: flex;
-  flex-shrink: 0;
-  gap: 8px;
-}
-
-
-/* =========================================================
-   DONE BUTTON
-   ========================================================= */
-
-.done-btn {
-  min-height: 34px;
-  padding: 0 13px;
-  border: 1px solid #d9aa90;
-  border-radius: 7px;
-  background: #ebded4;
-  color: #07203f;
-  font-size: 12px;
-  font-weight: 650;
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.done-btn:hover {
-  background: #07203f;
-  border-color: #07203f;
-  color: #ffffff;
-  transform: translateY(-1px);
-}
-
-
-/* =========================================================
-   DELETE TASK BUTTON
-   ========================================================= */
-
-.delete-btn {
-  min-height: 34px;
-  padding: 0 13px;
-  border: 1px solid #d9aa90;
-  border-radius: 7px;
-  background: #ffffff;
-  color: #a65e46;
-  font-size: 12px;
-  font-weight: 650;
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.delete-btn:hover {
-  background: #a65e46;
-  border-color: #a65e46;
-  color: #ffffff;
-  transform: translateY(-1px);
-}
-
-
-/* =========================================================
-   EMPTY / LOADING
-   ========================================================= */
-
-.empty-message {
-  margin: 0;
-  padding: 35px 20px;
-  border: 1px dashed #d9aa90;
-  border-radius: 10px;
-  background: #ebded4;
-  text-align: center;
-  color: #07203f;
-  font-size: 13px;
-}
-
-
-/* =========================================================
-   FOCUS ACCESSIBILITY
-   ========================================================= */
-
-button:focus-visible,
-input:focus-visible {
-  outline: 2px solid #d9aa90;
-  outline-offset: 2px;
-}
-
-
-/* =========================================================
-   TABLET
-   ========================================================= */
-
-@media (max-width: 850px) {
-  .dashboard-header {
-    padding: 20px 28px;
-  }
-
-  .dashboard-content {
-    padding: 30px 20px 45px;
-  }
-
-  .task-form {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .task-form .primary-btn {
-    grid-column: 1 / -1;
-    width: 100%;
-  }
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
+/* MOBILE BACKGROUND */
 
 @media (max-width: 600px) {
-  .auth-card {
-    width: calc(100% - 28px);
-    padding: 32px 22px 28px;
-    border-radius: 15px;
-  }
-
-  .auth-card h1 {
-    font-size: 29px;
-  }
-
-  .subtitle {
-    margin-bottom: 27px;
-  }
-
-  .dashboard-header {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 18px 16px;
-    gap: 15px;
-  }
-
-  .dashboard-header h1 {
-    font-size: 23px;
-  }
-
-  .account-actions {
-    width: 100%;
-  }
-
-  .account-actions button {
-    flex: 1;
-  }
-
-  .dashboard-content {
-    padding: 18px 12px 35px;
-  }
-
-  .task-card {
-    padding: 20px 15px;
-    border-radius: 12px;
-  }
-
-  .task-card-header {
-    align-items: flex-start;
-    margin-bottom: 20px;
-  }
-
-  .task-card-header h2 {
-    font-size: 19px;
-  }
-
-  .task-count {
-    min-width: 36px;
-    height: 36px;
-  }
-
-  .task-form {
-    grid-template-columns: 1fr;
-    gap: 9px;
-  }
-
-  .task-form .primary-btn {
-    grid-column: auto;
-    width: 100%;
-  }
-
-  .task-item {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 14px;
-    padding: 16px;
-  }
-
-  .task-actions {
-    width: 100%;
-  }
-
-  .done-btn,
-  .delete-btn {
-    flex: 1;
-    min-height: 39px;
-  }
-
-  .delete-account-panel {
-    width: calc(100% - 24px);
-    margin-top: 16px;
-    padding: 18px 16px;
-  }
-
-  .delete-account-panel input {
-    max-width: none;
-  }
-
-  .delete-account-actions {
-    flex-direction: column;
-  }
-
-  .secondary-btn,
-  .delete-confirm-btn {
-    width: 100%;
+  .app::before {
+    background-size: cover;
+    background-position: center;
+    animation: none;
   }
 }
 
+/* ACCESSIBILITY */
 
-/* =========================================================
-   SMALL MOBILE
-   ========================================================= */
-
-@media (max-width: 380px) {
-  .auth-card {
-    width: calc(100% - 20px);
-    padding: 28px 17px 24px;
-  }
-
-  .auth-card h1 {
-    font-size: 27px;
-  }
-
-  .dashboard-content {
-    padding-left: 8px;
-    padding-right: 8px;
-  }
-
-  .task-card {
-    padding: 17px 12px;
-  }
-
-  .account-actions {
-    flex-direction: column;
-  }
-
-  .account-actions button {
-    width: 100%;
+@media (prefers-reduced-motion: reduce) {
+  .app::before {
+    animation: none;
   }
 }
-
